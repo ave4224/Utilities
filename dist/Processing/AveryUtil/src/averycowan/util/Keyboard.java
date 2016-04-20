@@ -36,27 +36,6 @@ public class Keyboard implements KeyEventDispatcher {
      */
     public static void init() {//causeClassLoading();
     }
-    private void dispatchP(KeyListener k, KeyEvent e) {
-        new Thread() {
-            public void run() {
-                k.keyPressed(e);
-            }
-        }.start();
-    }
-    private void dispatchR(KeyListener k, KeyEvent e) {
-        new Thread() {
-            public void run() {
-                k.keyReleased(e);
-            }
-        }.start();
-    }
-    private void dispatchT(KeyListener k, KeyEvent e) {
-        new Thread() {
-            public void run() {
-                k.keyTyped(e);
-            }
-        }.start();
-    }
     private Keyboard() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
     }
@@ -70,7 +49,7 @@ public class Keyboard implements KeyEventDispatcher {
                     Keyboard.down[c - 'a'] = true;
                 }
                 for (KeyListener k : listeners) {
-                    dispatchP(k, e);
+                    k.keyPressed(e);
                 }
                 break;
             case KeyEvent.KEY_RELEASED:
@@ -79,12 +58,12 @@ public class Keyboard implements KeyEventDispatcher {
                     Keyboard.down[c - 'a'] = false;
                 }
                 for (KeyListener k : listeners) {
-                    dispatchR(k, e);
+                    k.keyReleased(e);
                 }
                 break;
             case KeyEvent.KEY_TYPED:
                 for (KeyListener k : listeners) {
-                    dispatchT(k, e);
+                    k.keyTyped(e);
                 }
                 break;
         }
