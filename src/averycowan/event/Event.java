@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Avery Cowan.
+ * Copyright 2015 Avery Cowan.
  *
  * Licensed under the MIT License (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package averycowan.util;
 
+package averycowan.event;
 /**
- *
- * @author avecowa
+ * This interface is for tagging all event types.
+ * @author Avery Cowan
+ * @see averycowan.event.EventManager
  */
-public class Pointer<T> {
-    public T $;
-    public Pointer(T $) {
-        this.$ = $;
-    }
+public interface Event {
+
 }
