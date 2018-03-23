@@ -55,8 +55,13 @@ public class Assert {
 
     private static class AssertionFailureException extends RuntimeException {
 
-        public AssertionFailureException(String s) {
+        private AssertionFailureException(String s) {
             super(s);
+            Out.flush();
+        }
+
+        private AssertionFailureException() {
+            this("Assertion failed");
         }
     }
 }
